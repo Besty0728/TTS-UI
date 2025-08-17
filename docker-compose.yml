@@ -1,0 +1,49 @@
+services:
+  tts-ui:
+    image: tts-ui:latest
+    container_name: tts-ui
+    ports:
+      - "7280:7280"
+    environment:
+      - FLASK_ENV=production
+      - SECRET_KEY=${SECRET_KEY:-tts-ui-production-secret-key-change-this}
+      - HOST=0.0.0.0
+      - PORT=7280
+    volumes:
+      - tts_data:/app/data
+      - tts_db:/app/database
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7280/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - tts-network
+
+  # 可选: Nginx反向代理 (取消注释以启用)
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: tts-ui-nginx
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  #     - ./ssl:/etc/nginx/ssl:ro  # SSL证书目录
+  #   depends_on:
+  #     - tts-ui
+  #   restart: unless-stopped
+  #   networks:
+  #     - tts-network
+
+volumes:
+  tts_data:
+    driver: local
+  tts_db:
+    driver: local
+
+networks:
+  tts-network:
+    driver: bridge

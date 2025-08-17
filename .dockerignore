@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Git
+.git/
+.gitignore
+
+# Docker测试文件
+docker-compose.simple.yml
+docker-compose.local.yml
+Dockerfile.simple
+test-docker.bat
+stop-docker.bat
+
+# 测试和开发文件
+*.log
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 环境配置
+.env
+.env.local
+.env.production
+
+# 数据库（使用Volume挂载）
+*.db
+*.db-journal
+
+# 文档和说明（保留核心文档）
+# README.md
+# DEPLOYMENT.md

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TTS-UI</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- 添加Font Awesome图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Login View -->
+        <div id="login-view">
+            <div class="language-switcher">
+                <label class="theme-switch">
+                    <input type="checkbox" class="theme-switch__checkbox" aria-label="Toggle dark mode">
+                    <div class="theme-switch__container">
+                        <div class="theme-switch__clouds"></div>
+                        <div class="theme-switch__stars-container">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 55" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M135.831 3.00688C135.055 3.85027 134.111 4.29946 133 4.35447C134.111 4.40947 135.055 4.85867 135.831 5.71123C136.607 6.55462 136.996 7.56303 136.996 8.72727C136.996 7.95722 137.172 7.25134 137.525 6.59129C137.886 5.93124 138.372 5.39954 138.98 5.00535C139.598 4.60199 140.268 4.39114 141 4.35447C139.88 4.2903 138.936 3.85027 138.16 3.00688C137.384 2.16348 136.996 1.16425 136.996 0C136.996 1.16425 136.607 2.16348 135.831 3.00688ZM31 23.3545C32.1114 23.2995 33.0551 22.8503 33.8313 22.0069C34.6075 21.1635 34.9956 20.1642 34.9956 19C34.9956 20.1642 35.3837 21.1635 36.1599 22.0069C36.9361 22.8503 37.8798 23.2903 39 23.3545C38.2679 23.3911 37.5976 23.602 36.9802 24.0053C36.3716 24.3995 35.8864 24.9312 35.5248 25.5913C35.172 26.2513 34.9956 26.9572 34.9956 27.7273C34.9956 26.563 34.6075 25.5546 33.8313 24.7112C33.0551 23.8587 32.1114 23.4095 31 23.3545ZM0 36.3545C1.11136 36.2995 2.05513 35.8503 2.83131 35.0069C3.6075 34.1635 3.99559 33.1642 3.99559 32C3.99559 33.1642 4.38368 34.1635 5.15987 35.0069C5.93605 35.8503 6.87982 36.2903 8 36.3545C7.26792 36.3911 6.59757 36.602 5.98015 37.0053C5.37155 37.3995 4.88644 37.9312 4.52481 38.5913C4.172 39.2513 3.99559 39.9572 3.99559 40.7273C3.99559 39.563 3.6075 38.5546 2.83131 37.7112C2.05513 36.8587 1.11136 36.4095 0 36.3545ZM56.8313 24.0069C56.0551 24.8503 55.1114 25.2995 54 25.3545C55.1114 25.4095 56.0551 25.8587 56.8313 26.7112C57.6075 27.5546 57.9956 28.563 57.9956 29.7273C57.9956 28.9572 58.172 28.2513 58.5248 27.5913C58.8864 26.9312 59.3716 26.3995 59.9802 26.0053C60.5976 25.602 61.2679 25.3911 62 25.3545C60.8798 25.2903 59.9361 24.8503 59.1599 24.0069C58.3837 23.1635 57.9956 22.1642 57.9956 21C57.9956 22.1642 57.6075 23.1635 56.8313 24.0069ZM81 25.3545C82.1114 25.2995 83.0551 24.8503 83.8313 24.0069C84.6075 23.1635 84.9956 22.1642 84.9956 21C84.9956 22.1642 85.3837 23.1635 86.1599 24.0069C86.9361 24.8503 87.8798 25.2903 89 25.3545C88.2679 25.3911 87.5976 25.602 86.9802 26.0053C86.3716 26.3995 85.8864 26.9312 85.5248 27.5913C85.172 28.2513 84.9956 28.9572 84.9956 29.7273C84.9956 28.563 84.6075 27.5546 83.8313 26.7112C83.0551 25.8587 82.1114 25.4095 81 25.3545ZM136 36.3545C137.111 36.2995 138.055 35.8503 138.831 35.0069C139.607 34.1635 139.996 33.1642 139.996 32C139.996 33.1642 140.384 34.1635 141.16 35.0069C141.936 35.8503 142.88 36.2903 144 36.3545C143.268 36.3911 142.598 36.602 141.98 37.0053C141.372 37.3995 140.886 37.9312 140.525 38.5913C140.172 39.2513 139.996 39.9572 139.996 40.7273C139.996 39.563 139.607 38.5546 138.831 37.7112C138.055 36.8587 137.111 36.4095 136 36.3545ZM101.831 49.0069C101.055 49.8503 100.111 50.2995 99 50.3545C100.111 50.4095 101.055 50.8587 101.831 51.7112C102.607 52.5546 102.996 53.563 102.996 54.7273C102.996 53.9572 103.172 53.2513 103.525 52.5913C103.886 51.9312 104.372 51.3995 104.98 51.0053C105.598 50.602 106.268 50.3911 107 50.3545C105.88 50.2903 104.936 49.8503 104.16 49.0069C103.384 48.1635 102.996 47.1642 102.996 46C102.996 47.1642 102.607 48.1635 101.831 49.0069Z" fill="currentColor"></path>
+                            </svg>
+                        </div>
+                        <div class="theme-switch__circle-container">
+                            <div class="theme-switch__sun-moon-container">
+                                <div class="theme-switch__moon">
+                                    <div class="theme-switch__spot"></div>
+                                    <div class="theme-switch__spot"></div>
+                                    <div class="theme-switch__spot"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <button id="lang-toggle" class="lang-btn" title="Switch Language">
+                    <i class="fas fa-globe"></i>
+                    <span id="current-lang">中文</span>
+                </button>
+            </div>
+            <h1><i class="fas fa-microphone-alt"></i> <span data-i18n="app-title">TTS Gateway</span></h1>
+            <form id="login-form">
+                <div>
+                    <label for="username"><i class="fas fa-user"></i> <span data-i18n="username">用户名</span></label>
+                    <input type="text" id="username" data-i18n-placeholder="username-placeholder" placeholder="请输入用户名" required>
+                </div>
+                <div>
+                    <label for="password"><i class="fas fa-lock"></i> <span data-i18n="password">密码</span></label>
+                    <input type="password" id="password" data-i18n-placeholder="password-placeholder" placeholder="请输入密码" required>
+                </div>
+                <button type="submit"><i class="fas fa-sign-in-alt"></i> <span data-i18n="login">登录</span></button>
+                <p id="login-error" class="error-message"></p>
+            </form>
+        </div>
+
+        <!-- Main Application View (initially hidden) -->
+        <div id="app-view" class="hidden">
+            <header>
+                <div class="user-info"><i class="fas fa-user-circle"></i> <span data-i18n="welcome">欢迎</span>, <span id="user-display"></span>!</div>
+                <nav>
+                    <button id="nav-converter" class="button active">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 384 512" height="20" fill="none" class="svg-icon">
+                            <g stroke-width="1.5" stroke-linecap="round" stroke="#5d41de">
+                                <!-- 主体麦克风 - 经典话筒样式 -->
+                                <path d="M192 0C139 0 96 43 96 96V256c0 53 43 96 96 96s96-43 96-96V96c0-53-43-96-96-96z" fill="currentColor" stroke="none"></path>
+                                <path d="M64 216c0-13.3-10.7-24-24-24s-24 10.7-24 24v40c0 89.1 66.2 162.7 152 174.4V464H120c-13.3 0-24 10.7-24 24s10.7 24 24 24h72 72c13.3 0 24-10.7 24-24s-10.7-24-24-24H216V430.4c85.8-11.7 152-85.3 152-174.4V216c0-13.3-10.7-24-24-24s-24 10.7-24 24v40c0 70.7-57.3 128-128 128s-128-57.3-128-128V216z" fill="currentColor" stroke="none"></path>
+                                <!-- 音波效果线条 -->
+                                <path d="M50 200c0-10 5-20 10-25" opacity="0.6" fill="none"></path>
+                                <path d="M334 200c0-10-5-20-10-25" opacity="0.6" fill="none"></path>
+                                <path d="M30 240c0-20 10-35 20-45" opacity="0.4" fill="none"></path>
+                                <path d="M354 240c0-20-10-35-20-45" opacity="0.4" fill="none"></path>
+                            </g>
+                        </svg>
+                        <span class="lable" data-i18n="converter">Converter</span>
+                    </button>
+                    <button id="nav-settings" class="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 20 20" height="20" fill="none" class="svg-icon">
+                            <g stroke-width="1.5" stroke-linecap="round" stroke="#5d41de">
+                                <circle r="2.5" cy="10" cx="10"></circle>
+                                <path fill-rule="evenodd" d="m8.39079 2.80235c.53842-1.51424 2.67991-1.51424 3.21831-.00001.3392.95358 1.4284 1.40477 2.3425.97027 1.4514-.68995 2.9657.82427 2.2758 2.27575-.4345.91407.0166 2.00334.9702 2.34248 1.5143.53842 1.5143 2.67996 0 3.21836-.9536.3391-1.4047 1.4284-.9702 2.3425.6899 1.4514-.8244 2.9656-2.2758 2.2757-.9141-.4345-2.0033.0167-2.3425.9703-.5384 1.5142-2.67989 1.5142-3.21831 0-.33914-.9536-1.4284-1.4048-2.34247-.9703-1.45148.6899-2.96571-.8243-2.27575-2.2757.43449-.9141-.01669-2.0034-.97028-2.3425-1.51422-.5384-1.51422-2.67994.00001-3.21836.95358-.33914 1.40476-1.42841.97027-2.34248-.68996-1.45148.82427-2.9657 2.27575-2.27575.91407.4345 2.00333-.01669 2.34247-.97026z" clip-rule="evenodd"></path>
+                            </g>
+                        </svg>
+                        <span class="lable" data-i18n="settings">Settings</span>
+                    </button>
+                </nav>
+                <div class="header-actions">
+                    <label class="theme-switch">
+                        <input type="checkbox" class="theme-switch__checkbox" aria-label="Toggle dark mode">
+                        <div class="theme-switch__container">
+                            <div class="theme-switch__clouds"></div>
+                            <div class="theme-switch__stars-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 55" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M135.831 3.00688C135.055 3.85027 134.111 4.29946 133 4.35447C134.111 4.40947 135.055 4.85867 135.831 5.71123C136.607 6.55462 136.996 7.56303 136.996 8.72727C136.996 7.95722 137.172 7.25134 137.525 6.59129C137.886 5.93124 138.372 5.39954 138.98 5.00535C139.598 4.60199 140.268 4.39114 141 4.35447C139.88 4.2903 138.936 3.85027 138.16 3.00688C137.384 2.16348 136.996 1.16425 136.996 0C136.996 1.16425 136.607 2.16348 135.831 3.00688ZM31 23.3545C32.1114 23.2995 33.0551 22.8503 33.8313 22.0069C34.6075 21.1635 34.9956 20.1642 34.9956 19C34.9956 20.1642 35.3837 21.1635 36.1599 22.0069C36.9361 22.8503 37.8798 23.2903 39 23.3545C38.2679 23.3911 37.5976 23.602 36.9802 24.0053C36.3716 24.3995 35.8864 24.9312 35.5248 25.5913C35.172 26.2513 34.9956 26.9572 34.9956 27.7273C34.9956 26.563 34.6075 25.5546 33.8313 24.7112C33.0551 23.8587 32.1114 23.4095 31 23.3545ZM0 36.3545C1.11136 36.2995 2.05513 35.8503 2.83131 35.0069C3.6075 34.1635 3.99559 33.1642 3.99559 32C3.99559 33.1642 4.38368 34.1635 5.15987 35.0069C5.93605 35.8503 6.87982 36.2903 8 36.3545C7.26792 36.3911 6.59757 36.602 5.98015 37.0053C5.37155 37.3995 4.88644 37.9312 4.52481 38.5913C4.172 39.2513 3.99559 39.9572 3.99559 40.7273C3.99559 39.563 3.6075 38.5546 2.83131 37.7112C2.05513 36.8587 1.11136 36.4095 0 36.3545ZM56.8313 24.0069C56.0551 24.8503 55.1114 25.2995 54 25.3545C55.1114 25.4095 56.0551 25.8587 56.8313 26.7112C57.6075 27.5546 57.9956 28.563 57.9956 29.7273C57.9956 28.9572 58.172 28.2513 58.5248 27.5913C58.8864 26.9312 59.3716 26.3995 59.9802 26.0053C60.5976 25.602 61.2679 25.3911 62 25.3545C60.8798 25.2903 59.9361 24.8503 59.1599 24.0069C58.3837 23.1635 57.9956 22.1642 57.9956 21C57.9956 22.1642 57.6075 23.1635 56.8313 24.0069ZM81 25.3545C82.1114 25.2995 83.0551 24.8503 83.8313 24.0069C84.6075 23.1635 84.9956 22.1642 84.9956 21C84.9956 22.1642 85.3837 23.1635 86.1599 24.0069C86.9361 24.8503 87.8798 25.2903 89 25.3545C88.2679 25.3911 87.5976 25.602 86.9802 26.0053C86.3716 26.3995 85.8864 26.9312 85.5248 27.5913C85.172 28.2513 84.9956 28.9572 84.9956 29.7273C84.9956 28.563 84.6075 27.5546 83.8313 26.7112C83.0551 25.8587 82.1114 25.4095 81 25.3545ZM136 36.3545C137.111 36.2995 138.055 35.8503 138.831 35.0069C139.607 34.1635 139.996 33.1642 139.996 32C139.996 33.1642 140.384 34.1635 141.16 35.0069C141.936 35.8503 142.88 36.2903 144 36.3545C143.268 36.3911 142.598 36.602 141.98 37.0053C141.372 37.3995 140.886 37.9312 140.525 38.5913C140.172 39.2513 139.996 39.9572 139.996 40.7273C139.996 39.563 139.607 38.5546 138.831 37.7112C138.055 36.8587 137.111 36.4095 136 36.3545ZM101.831 49.0069C101.055 49.8503 100.111 50.2995 99 50.3545C100.111 50.4095 101.055 50.8587 101.831 51.7112C102.607 52.5546 102.996 53.563 102.996 54.7273C102.996 53.9572 103.172 53.2513 103.525 52.5913C103.886 51.9312 104.372 51.3995 104.98 51.0053C105.598 50.602 106.268 50.3911 107 50.3545C105.88 50.2903 104.936 49.8503 104.16 49.0069C103.384 48.1635 102.996 47.1642 102.996 46C102.996 47.1642 102.607 48.1635 101.831 49.0069Z" fill="currentColor"></path>
+                                </svg>
+                            </div>
+                            <div class="theme-switch__circle-container">
+                                <div class="theme-switch__sun-moon-container">
+                                    <div class="theme-switch__moon">
+                                        <div class="theme-switch__spot"></div>
+                                        <div class="theme-switch__spot"></div>
+                                        <div class="theme-switch__spot"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <button id="lang-toggle-app" class="lang-btn" title="Switch Language">
+                        <i class="fas fa-globe"></i>
+                        <span id="current-lang-app">中文</span>
+                    </button>
+                    <button id="logout-btn" class="Btn">
+                        <div class="sign">
+                            <svg viewBox="0 0 512 512">
+                                <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+                            </svg>
+                        </div>
+                        <div class="text">
+                            <span class="text-zh">注销</span>
+                            <span class="text-en">Logout</span>
+                        </div>
+                    </button>
+                </div>
+            </header>
+
+            <main>
+                <!-- Converter Page -->
+                <div id="converter-page" class="page">
+                    <h2><i class="fas fa-volume-up"></i> <span data-i18n="tts-converter-title">文本转语音转换器</span></h2>
+                    <div>
+                        <label for="tts-text"><i class="fas fa-edit"></i> <span data-i18n="input-text">输入文本</span></label>
+                        <textarea id="tts-text" data-i18n-placeholder="text-placeholder" placeholder="在这里输入要转换为语音的文本..."></textarea>
+                    </div>
+                    <div class="controls">
+                        <div>
+                            <label for="service-select"><i class="fas fa-cloud"></i> <span data-i18n="service-provider">服务商</span></label>
+                            <select id="service-select">
+                                <option value="openai">OpenAI</option>
+                                <option value="gemini">Gemini</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="voice-select"><i class="fas fa-user-tie"></i> <span data-i18n="voice">语音</span></label>
+                            <select id="voice-select">
+                                <option value="alloy">Alloy</option>
+                                <option value="echo">Echo</option>
+                                <option value="fable">Fable</option>
+                                <option value="onyx">Onyx</option>
+                                <option value="nova">Nova</option>
+                                <option value="shimmer">Shimmer</option>
+                            </select>
+                        </div>
+                        <button id="convert-btn">
+                            <div class="svg-wrapper-1">
+                                <div class="svg-wrapper">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                        <path fill="none" d="M0 0h24v24H0z"></path>
+                                        <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <span data-i18n="convert-to-speech">转换</span>
+                        </button>
+                        <button id="cancel-btn" class="hidden">
+                            <i class="fas fa-stop"></i> <span data-i18n="cancel-generation">中断生成</span>
+                        </button>
+                    </div>
+                    <div id="audio-player-container">
+                        <!-- We will create the audio player here with JS -->
+                    </div>
+                    <div id="tts-loader" class="loader-wrapper hidden">
+                        <span class="loader-letter">G</span>
+                        <span class="loader-letter">e</span>
+                        <span class="loader-letter">n</span>
+                        <span class="loader-letter">e</span>
+                        <span class="loader-letter">r</span>
+                        <span class="loader-letter">a</span>
+                        <span class="loader-letter">t</span>
+                        <span class="loader-letter">i</span>
+                        <span class="loader-letter">n</span>
+                        <span class="loader-letter">g</span>
+                        <div class="loader"></div>
+                    </div>
+                    <p id="tts-status"></p>
+                </div>
+
+                <!-- Settings Page (initially hidden) -->
+                <div id="settings-page" class="page hidden">
+                    <h2><i class="fas fa-tools"></i> <span data-i18n="api-settings">API 设置</span></h2>
+                    <div class="settings-forms-container">
+                        <!-- OpenAI Settings Form -->
+                        <form id="openai-settings-form" class="settings-form">
+                            <h3><i class="fab fa-openai"></i> OpenAI</h3>
+                            <div>
+                                <label for="openai-api-key"><i class="fas fa-key"></i> <span data-i18n="api-key">API Key</span></label>
+                                <input type="password" id="openai-api-key" placeholder="sk-...">
+                            </div>
+                            <div>
+                                <label for="openai-api-endpoint"><i class="fas fa-link"></i> <span data-i18n="api-endpoint">API Endpoint</span></label>
+                                <input type="text" id="openai-api-endpoint" value="https://api.openai.com/v1/audio/speech">
+                            </div>
+                            <div>
+                                <label for="openai-model"><i class="fas fa-robot"></i> <span data-i18n="model">模型</span></label>
+                                <input type="text" id="openai-model" data-i18n-placeholder="openai-model-placeholder" placeholder="例如: tts-1, gpt-4-tts, etc.">
+                            </div>
+                            <button type="submit" class="settings-save-btn" data-zh-alt="保存 OPENAI 设置" data-en-alt="SAVE OPENAI">
+                                <span class="btn-text-zh">
+                                    <i>保</i>
+                                    <i>存</i>
+                                    <i>&nbsp;</i>
+                                    <i>O</i>
+                                    <i>P</i>
+                                    <i>E</i>
+                                    <i>N</i>
+                                    <i>A</i>
+                                    <i>I</i>
+                                    <i>&nbsp;</i>
+                                    <i>设</i>
+                                    <i>置</i>
+                                </span>
+                                <span class="btn-text-en hidden">
+                                    <i>S</i>
+                                    <i>A</i>
+                                    <i>V</i>
+                                    <i>E</i>
+                                    <i>&nbsp;</i>
+                                    <i>O</i>
+                                    <i>P</i>
+                                    <i>E</i>
+                                    <i>N</i>
+                                    <i>A</i>
+                                    <i>I</i>
+                                </span>
+                            </button>
+                            <p id="openai-save-status" class="status-message"></p>
+                        </form>
+
+                        <!-- Gemini Settings Form -->
+                        <form id="gemini-settings-form" class="settings-form">
+                            <h3>Gemini</h3>
+                            <div>
+                                <label for="gemini-api-key"><i class="fas fa-key"></i> <span data-i18n="api-key">API Key</span></label>
+                                <input type="password" id="gemini-api-key" placeholder="AIzaSy...">
+                            </div>
+                            <div>
+                                <label for="gemini-api-endpoint"><i class="fas fa-link"></i> <span data-i18n="api-endpoint">API Endpoint</span></label>
+                                <input type="text" id="gemini-api-endpoint"
+                                    data-i18n-placeholder="gemini-endpoint-placeholder" placeholder="例如: https://generativelanguage.googleapis.com/...">
+                            </div>
+                            <div>
+                                <label for="gemini-model"><i class="fas fa-robot"></i> <span data-i18n="model">Model</span></label>
+                                <input type="text" id="gemini-model" data-i18n-placeholder="gemini-model-placeholder" placeholder="例如: gemini-2.5-flash-preview-tts" value="gemini-2.5-flash-preview-tts">
+                            </div>
+                            <button type="submit" class="settings-save-btn" data-zh-alt="保存 GEMINI 设置" data-en-alt="SAVE GEMINI">
+                                <span class="btn-text-zh">
+                                    <i>保</i>
+                                    <i>存</i>
+                                    <i>&nbsp;</i>
+                                    <i>G</i>
+                                    <i>E</i>
+                                    <i>M</i>
+                                    <i>I</i>
+                                    <i>N</i>
+                                    <i>I</i>
+                                    <i>&nbsp;</i>
+                                    <i>设</i>
+                                    <i>置</i>
+                                </span>
+                                <span class="btn-text-en hidden">
+                                    <i>S</i>
+                                    <i>A</i>
+                                    <i>V</i>
+                                    <i>E</i>
+                                    <i>&nbsp;</i>
+                                    <i>G</i>
+                                    <i>E</i>
+                                    <i>M</i>
+                                    <i>I</i>
+                                    <i>N</i>
+                                    <i>I</i>
+                                </span>
+                            </button>
+                            <p id="gemini-save-status" class="status-message"></p>
+                        </form>
+
+                        <!-- Account Management Form -->
+                        <form id="account-settings-form" class="settings-form">
+                            <h3><i class="fas fa-user-cog"></i> <span data-i18n="account-management">账户管理</span></h3>
+                            <div>
+                                <label for="account-username"><i class="fas fa-user"></i> <span data-i18n="new-username">新用户名</span></label>
+                                <input type="text" id="account-username" data-i18n-placeholder="new-username-placeholder" placeholder="输入新用户名（可选）">
+                            </div>
+                            <div>
+                                <label for="account-password"><i class="fas fa-lock"></i> <span data-i18n="new-password">新密码</span></label>
+                                <input type="password" id="account-password" data-i18n-placeholder="new-password-placeholder" placeholder="输入新密码（可选）">
+                            </div>
+                            <div>
+                                <label for="current-password"><i class="fas fa-key"></i> <span data-i18n="current-password">当前密码</span></label>
+                                <input type="password" id="current-password" data-i18n-placeholder="current-password-placeholder" placeholder="输入当前密码确认身份" required>
+                            </div>
+                            <button type="submit" class="settings-save-btn" data-zh-alt="更新账户" data-en-alt="UPDATE">
+                                <span class="btn-text-zh">
+                                    <i>更</i>
+                                    <i>新</i>
+                                    <i>&nbsp;</i>
+                                    <i>账</i>
+                                    <i>户</i>
+                                </span>
+                                <span class="btn-text-en hidden">
+                                    <i>U</i>
+                                    <i>P</i>
+                                    <i>D</i>
+                                    <i>A</i>
+                                    <i>T</i>
+                                    <i>E</i>
+                                </span>
+                            </button>
+                            <p id="account-save-status" class="status-message"></p>
+                        </form>
+
+                        <!-- Application Settings Form -->
+                        <form id="app-settings-form" class="settings-form">
+                            <h3><i class="fas fa-cogs"></i> <span data-i18n="app-settings">应用设置</span></h3>
+                            <div class="setting-row">
+                                <label for="auto-cleanup-toggle">
+                                    <i class="fas fa-trash-alt"></i> 
+                                    <span data-i18n="auto-cleanup">切换页面时自动清理音频</span>
+                                </label>
+                                <label class="switch">
+                                    <input type="checkbox" id="auto-cleanup-toggle" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script src="/js/app.js"></script>
+</body>
+
+</html>
