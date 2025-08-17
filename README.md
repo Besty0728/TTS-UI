@@ -15,6 +15,8 @@ TTS-UI 是一个基于 Flask 的现代化文本转语音 (TTS) Web 应用程序�
 - 🔧 **易配置**: 图形化设置界面，支持API密钥管理
 - 🌍 **多语言**: 支持中英文界面切换
 
+<h3>⭐ 如果这个项目对您有帮助，请给我们一个 Star！</h3>
+
 ## 🚀 快速开始
 
 [![快速部署指南](https://img.shields.io/badge/快速部署指南-点击查看-2ea44f?style=for-the-badge)](https://github.com/Besty0728/TTS-UI/blob/main/QUICKSTART.md)
@@ -563,9 +565,6 @@ POST /api/settings   # 保存设置
 
 本项目采用 Apache2.0 许可证 - 详情请查看 [LICENSE](LICENSE) 文件。
 
-## 🤝 贡献
-
-欢迎贡献代码！请查看 [CONTRIBUTING.md](CONTRIBUTING.md) 了解详细信息。
 
 ---
 
