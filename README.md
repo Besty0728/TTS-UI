@@ -1,3 +1,5 @@
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=160&section=header&text=🌈%20你好啊，欢迎来到TTS-UI部署指南%20✨&fontSize=28&fontColor=fff&animation=twinkling&fontAlignY=40" />
+
 # TTS-UI - 文本转语音Web应用
 
 ## 🎯 项目简介
@@ -14,6 +16,10 @@ TTS-UI 是一个基于 Flask 的现代化文本转语音 (TTS) Web 应用程序�
 - 🌍 **多语言**: 支持中英文界面切换
 
 ## 🚀 快速开始
+
+[![快速部署指南](https://img.shields.io/badge/快速部署指南-点击查看-2ea44f?style=for-the-badge)](https://github.com/Besty0728/TTS-UI/blob/main/QUICKSTART.md)
+[![完整文档](https://img.shields.io/badge/完整文档-点击查看-yellow?style=for-the-badge)](https://github.com/Besty0728/TTS-UI/blob/main/DEPLOYMENT.md)
+[![版本信息](https://img.shields.io/badge/版本信息-点击查看-blue?style=for-the-badge)](https://github.com/Besty0728/TTS-UI/blob/main/VERSION.md)
 
 ### 方式一：使用公共镜像 (最快)
 
