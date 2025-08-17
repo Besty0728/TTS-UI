@@ -29,7 +29,7 @@ docker run -d --name tts-ui -p 7280:7280 --restart unless-stopped betsy0728/tts-
 
 ```bash
 # 1. 克隆项目
-git clone <your-repository-url>
+git clone https://github.com/Besty0728/TTS-UI.git
 cd TTS-UI
 
 # 2. 启动应用
@@ -44,7 +44,7 @@ docker-compose up -d
 
 ```bash
 # 1. 克隆项目
-git clone <your-repository-url>
+git clone https://github.com/Besty0728/TTS-UI.git
 cd TTS-UI
 
 # 2. 安装依赖
@@ -547,11 +547,11 @@ POST /api/settings   # 保存设置
 
 ### 常用链接
 
-- **项目仓库**: https://github.com/your-repo/tts-ui
+- **项目仓库**: https://github.com/Besty0728/TTS-UI
 - **Docker Hub**: https://hub.docker.com/r/betsy0728/tts-ui
 - **Docker 使用指南**: [DOCKER-USAGE.md](DOCKER-USAGE.md)
 - **快速部署指南**: [QUICKSTART.md](QUICKSTART.md)
-- **问题反馈**: https://github.com/your-repo/tts-ui/issues
+- **问题反馈**: https://github.com/Besty0728/TTS-UI/issues
 
 ## 📄 许可证
 

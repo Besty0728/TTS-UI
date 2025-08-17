@@ -49,7 +49,7 @@ docker run -d \
 #### 快速启动
 ```bash
 # 克隆项目
-git clone <your-repo-url>
+git clone https://github.com/Besty0728/TTS-UI.git
 cd TTS-UI
 
 # 启动容器
@@ -127,7 +127,7 @@ docker exec -it tts-ui /bin/bash
 #### 安装 Python 依赖
 ```bash
 # 克隆项目
-git clone <your-repo-url>
+git clone https://github.com/Besty0728/TTS-UI.git
 cd TTS-UI
 
 # 创建虚拟环境 (推荐)

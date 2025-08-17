@@ -202,7 +202,7 @@ docker volume inspect tts_data
 
 ## 📞 技术支持
 
-- **GitHub**: https://github.com/your-repo/tts-ui
+- **GitHub**: https://github.com/Besty0728/TTS-UI
 - **Docker Hub**: https://hub.docker.com/r/betsy0728/tts-ui
 - **问题反馈**: 创建 GitHub Issue
 

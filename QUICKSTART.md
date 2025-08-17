@@ -27,7 +27,7 @@ docker run -d \
 ### 步骤
 1. **获取代码**
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Besty0728/TTS-UI.git
 cd TTS-UI
 ```
 
@@ -66,7 +66,7 @@ docker-compose restart
 ### 步骤
 1. **获取代码**
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Besty0728/TTS-UI.git
 cd TTS-UI
 ```
 
