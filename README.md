@@ -22,6 +22,7 @@ TTS-UI 是一个基于 Flask 的现代化文本转语音 (TTS) Web 应用程序�
 [![快速部署指南](https://img.shields.io/badge/快速部署指南-点击查看-2ea44f?style=for-the-badge)](https://github.com/Besty0728/TTS-UI/blob/main/QUICKSTART.md)
 [![完整文档](https://img.shields.io/badge/完整文档-点击查看-yellow?style=for-the-badge)](https://github.com/Besty0728/TTS-UI/blob/main/DEPLOYMENT.md)
 [![版本信息](https://img.shields.io/badge/版本信息-点击查看-blue?style=for-the-badge)](https://github.com/Besty0728/TTS-UI/blob/main/VERSION.md)
+[![项目预览](https://img.shields.io/badge/项目预览-点击查看-purple?style=for-the-badge)](https://github.com/Besty0728/TTS-UI/blob/main/preview.md)
 
 ### 方式一：使用公共镜像 (最快)
 
