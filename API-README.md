@@ -36,7 +36,7 @@ TTS-UI v2.0 提供完整的RESTful API服务，支持外部系统调用文本转
 
 ### Base URL
 ```
-http://your-domain:7280/api/v1
+http://localhost:7280/api/v1
 ```
 
 ### 1. 健康检查
