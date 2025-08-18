@@ -14,7 +14,7 @@
 🔊 **智能音频**: 自动检测PCM格式，完美支持浏览器播放  
 🔧 **增强兼容**: 支持更多Gemini API代理端点  
 
-无需额外配置，升级后即可享受更好的音频体验！ion=header&text=🌈%20你好啊，欢迎来到TTS-UI快速部署指南%20✨&fontSize=28&fontColor=fff&animation=twinkling&fontAlignY=40" />
+#### 无需额外配置，升级后即可享受更好的音频体验！
 
 # TTS-UI 快速部署指南
 
