@@ -1,10 +1,15 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=160&section=header&text=🌈%20你好啊，欢迎来到TTS-UI完整文档%20✨&fontSize=28&fontColor=fff&animation=twinkling&fontAlignY=40" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=160&section=header&text=🌈%20你好啊，欢迎来到TTS-UI%20v2.0完整文档%20✨&fontSize=28&fontColor=fff&animation=twinkling&fontAlignY=40" />
 
 # TTS-UI 完整文档
 
 ## 简介
 
-TTS-UI 是一个基于 Flask 的文本转语音 (TTS) Web 应用程序，支持多种TTS引擎和语音配置。本指南提供三种主要的部署方式：公共镜像部署、Docker 容器部署和源代码部署。
+TTS-UI v2.0 是一个基于 Flask 的企业级文本转语音 (TTS) Web 应用程序，支持多种TTS引擎和语音配置。v2.0版本新增了完整的开放API服务，支持外部系统调用。本指南提供三种主要的部署方式：公共镜像部署、Docker 容器部署和源代码部署。
+
+**📚 相关文档**:
+- [API完整文档](API-README.md) - 详细的API端点、认证、SDK示例
+- [快速部署指南](QUICKSTART.md) - 2分钟快速上手
+- [Docker使用指南](DOCKER-USAGE.md) - Docker专用部署文档
 
 ## 系统要求
 
@@ -12,7 +17,33 @@ TTS-UI 是一个基于 Flask 的文本转语音 (TTS) Web 应用程序，支持�
 - **Docker**: 20.10+ (推荐)
 - **Python**: 3.11+ (源代码部署)
 
-## 🆕 v1.1.0 新特性
+## 🆕 v2.0 重大更新
+
+### 🌐 开放API服务
+- **RESTful API**: 完整的REST API支持
+- **外部调用**: 支持任何编程语言调用
+- **标准协议**: 使用Bearer Token认证
+- **多格式支持**: JSON输入输出，支持多种音频格式
+
+### 🔑 API密钥管理系统
+- **独立管理**: 与用户账户分离的API密钥系统
+- **使用统计**: 详细的调用次数和使用分析
+- **安全控制**: 支持密钥创建、删除、查看统计
+- **访问控制**: 基于密钥的访问验证
+
+### 🎨 美化API测试控制台
+- **现代化界面**: 全新设计的API测试控制台
+- **在线测试**: 直接在浏览器中测试API功能
+- **一键复制**: 复制API端点和示例代码
+- **实时监控**: 服务状态和性能监控
+
+### 📊 监控和统计
+- **使用统计**: 详细的API调用数据
+- **性能监控**: 实时的服务状态检查
+- **错误跟踪**: 完善的错误日志系统
+- **健康检查**: 内置的服务健康检查端点
+
+## 历史版本特性 (v1.1.0)
 
 ### 🎯 支持 Gemini-balance 开源项目
 - **项目地址**: https://github.com/snailyp/gemini-balance

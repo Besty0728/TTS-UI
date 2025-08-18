@@ -3,8 +3,8 @@ FROM python:3.11-slim
 
 # 设置维护者信息
 LABEL maintainer="TTS-UI"
-LABEL description="TTS Gateway Web Application - Support Gemini-balance project"
-LABEL version="1.1.0"
+LABEL description="TTS Gateway Web Application v2.0 - Enterprise API Service"
+LABEL version="2.0.0"
 
 # 设置工作目录
 WORKDIR /app

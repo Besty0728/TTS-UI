@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=160&section=header&text=🌈%20你好啊，欢迎来到TTS-UI镜像使用指南%20✨&fontSize=28&fontColor=fff&animation=twinkling&fontAlignY=40" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=160&section=header&text=🌈%20你好啊，欢迎来到TTS-UI%20Docker镜像使用指南%20✨&fontSize=28&fontColor=fff&animation=twinkling&fontAlignY=40" />
 
 # TTS-UI Docker 镜像使用指南
 
@@ -6,18 +6,29 @@
 
 **Docker Hub 仓库**: `betsy0728/tts-ui`
 
-**镜像标签**: `betsy0728/tts-ui:latest` - 最新稳定版本
+**镜像标签**: `betsy0728/tts-ui:latest` - v2.0最新稳定版本
 
 **镜像大小**: 720MB  
 **基础镜像**: python:3.11-slim  
 **架构**: linux/amd64
+**版本**: v2.0.0 (支持开放API服务)
 
-## 🚀 快速开始
+**📚 相关文档**: [完整API文档](API-README.md) - 详细的API使用说明、认证方式和SDK示例
+
+## 🆕 v2.0 新增功能
+
+- 🌐 **开放API服务**: 完整的RESTful API支持
+- 🔑 **API密钥管理**: 独立的密钥系统
+- 🎨 **美化控制台**: 全新API测试界面
+- 📊 **使用统计**: 详细的调用监控
+- � **安全增强**: Bearer Token认证
+
+## �🚀 快速开始
 
 ### 方式一：直接运行 (推荐)
 
 ```bash
-# 拉取并运行最新版本
+# 拉取并运行v2.0版本
 docker run -d \
   --name tts-ui \
   -p 7280:7280 \
@@ -25,9 +36,17 @@ docker run -d \
   betsy0728/tts-ui:latest
 ```
 
+### 访问地址
+- **Web界面**: http://localhost:7280
+- **API控制台**: http://localhost:7280/api.html  
+- **API端点**: http://localhost:7280/api/v1/
+- **默认登录**: admin / admin
+
 ### 方式二：使用 Docker Compose
 
 创建 `docker-compose.yml` 文件：
+
+注意，项目中其实已经有了，可以跳过
 
 ```yaml
 services:

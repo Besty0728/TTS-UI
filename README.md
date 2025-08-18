@@ -1,10 +1,10 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=160&section=header&text=🌈%20你好啊，欢迎来到TTS-UI部署指南%20✨&fontSize=28&fontColor=fff&animation=twinkling&fontAlignY=40" />
 
-# TTS-UI - 文本转语音Web应用
+# TTS-UI-部署指南
 
 ## 🎯 项目简介
 
-TTS-UI 是一个基于 Flask 的现代化文本转语音 (TTS) Web 应用程序，支持多种TTS引擎和语音配置。提供直观的Web界面，支持深色/浅色主题切换，具备完整的用户管理和API配置功能。
+TTS-UI 是一个基于 Flask 的现代化企业级文本转语音 (TTS) Web 应用程序，支持多种TTS引擎和语音配置。提供直观的Web界面，支持深色/浅色主题切换，具备完整的用户管理、API配置和开放API服务功能。
 
 ## ✨ 核心特性
 
@@ -12,9 +12,22 @@ TTS-UI 是一个基于 Flask 的现代化文本转语音 (TTS) Web 应用程序�
 - 🎯 **多引擎支持**: OpenAI TTS, Gemini TTS, 支持 [Gemini-balance](https://github.com/snailyp/gemini-balance) 开源项目
 - 🔊 **智能音频处理**: 自动检测PCM格式并添加WAV文件头，确保浏览器完美播放
 - 🔐 **用户管理**: 基于会话的身份验证系统
-- 📱 **跨平台**: 支持 Docker 容器化部署，兼容 Linux/Windows/macOS
+- 🌐 **开放API服务**: 提供RESTful API，支持外部调用TTS服务
+- � **API密钥管理**: 独立的API密钥系统，支持使用统计和访问控制
+- 📊 **使用监控**: 完整的API调用统计和使用监控
+- 🎛️ **专业控制台**: 美化的API测试控制台，支持在线测试
+- �📱 **跨平台**: 支持 Docker 容器化部署，兼容 Linux/Windows/macOS
 - 🔧 **易配置**: 图形化设置界面，支持API密钥管理
 - 🌍 **多语言**: 支持中英文界面切换
+
+## 🆕 v2.0 新增功能
+
+- ✨ **开放API端点**: 支持外部系统调用TTS服务
+- 🔑 **API密钥管理**: 独立的密钥系统，支持创建、删除、统计
+- 📊 **使用统计**: 详细的API调用数据和使用分析
+- 🎨 **美化控制台**: 全新设计的API测试界面
+- 🔒 **安全增强**: API访问控制和速率限制
+- 📈 **监控面板**: 实时的服务状态和性能监控
 
 <h3>⭐ 如果这个项目对您有帮助，请给我们一个 Star！</h3>
 
@@ -22,6 +35,7 @@ TTS-UI 是一个基于 Flask 的现代化文本转语音 (TTS) Web 应用程序�
 
 [![快速部署指南](https://img.shields.io/badge/快速部署指南-点击查看-2ea44f?style=for-the-badge)](https://github.com/Besty0728/TTS-UI/blob/main/QUICKSTART.md)
 [![完整文档](https://img.shields.io/badge/完整文档-点击查看-yellow?style=for-the-badge)](https://github.com/Besty0728/TTS-UI/blob/main/DEPLOYMENT.md)
+[![API文档](https://img.shields.io/badge/API文档-点击查看-orange?style=for-the-badge)](https://github.com/Besty0728/TTS-UI/blob/main/API-README.md)
 [![版本信息](https://img.shields.io/badge/版本信息-点击查看-blue?style=for-the-badge)](https://github.com/Besty0728/TTS-UI/blob/main/VERSION.md)
 [![项目预览](https://img.shields.io/badge/项目预览-点击查看-purple?style=for-the-badge)](https://github.com/Besty0728/TTS-UI/blob/main/preview.md)
 [![更新计划](https://img.shields.io/badge/更新计划-点击查看-red?style=for-the-badge)](https://github.com/Besty0728/TTS-UI/wiki)
@@ -29,10 +43,11 @@ TTS-UI 是一个基于 Flask 的现代化文本转语音 (TTS) Web 应用程序�
 ### 方式一：使用公共镜像 (最快)
 
 ```bash
-# 直接运行预构建镜像
+# 直接运行v2.0镜像
 docker run -d --name tts-ui -p 7280:7280 --restart unless-stopped betsy0728/tts-ui:latest
 
-# 访问应用: http://localhost:7280
+# 访问应用: http://localhost:7280 (Web界面)
+# API控制台: http://localhost:7280/api.html (新增)
 # 默认登录: admin / admin
 ```
 
@@ -47,7 +62,8 @@ cd TTS-UI
 docker-compose up -d
 
 # 3. 访问应用
-# 浏览器打开: http://localhost:7280
+# Web界面: http://localhost:7280 
+# API控制台: http://localhost:7280/api.html (v2.0新增)
 # 默认登录: admin / admin
 ```
 
@@ -305,6 +321,199 @@ MAX_TEXT_LENGTH=5000             # 最大文本长度
 - **特性**: 支持负载均衡的Gemini API代理服务
 - **配置**: 使用Gemini-balance的端点URL替换官方API端点
 - **兼容性**: 自动检测PCM音频格式，完美支持浏览器播放
+
+## 🌐 开放API服务 (v2.0新增)
+
+TTS-UI v2.0 提供完整的RESTful API服务，支持外部系统调用。
+
+**📖 完整API文档**: [API-README.md](API-README.md) - 详细的API说明、认证方式、SDK示例和最佳实践
+
+**🎛️ 在线测试**: 访问 `http://localhost:7280/api.html` 使用API控制台
+
+### 1. API密钥管理
+
+#### 创建API密钥
+- 登录Web界面
+- 进入"API管理"页面
+- 点击"创建API密钥"生成新密钥
+- 妥善保存密钥，页面关闭后无法再次查看
+
+#### API密钥特性
+- 🔐 **安全**: 随机生成，高强度加密
+- 📊 **统计**: 详细的调用次数和使用统计
+- 🎛️ **管理**: 支持创建、删除、查看统计
+- 🔒 **访问控制**: 基于密钥的访问验证
+
+### 2. API端点
+
+#### 基础信息
+- **Base URL**: `http://your-domain:7280/api/v1`
+- **认证方式**: Bearer Token (API密钥)
+- **内容类型**: `application/json`
+
+#### 可用端点
+
+##### 健康检查
+```bash
+GET /api/v1/health
+# 响应: {"status": "healthy", "supported_providers": ["openai", "gemini"]}
+```
+
+##### 获取支持的服务商
+```bash
+GET /api/v1/providers
+Authorization: Bearer YOUR_API_KEY
+# 响应: {"providers": ["openai", "gemini"]}
+```
+
+##### TTS语音合成
+```bash
+POST /api/v1/tts/synthesize
+Authorization: Bearer YOUR_API_KEY
+Content-Type: application/json
+
+{
+  "text": "要转换的文本",
+  "provider": "openai",  // openai 或 gemini
+  "voice": "alloy",      // 语音类型
+  "format": "mp3",       // 输出格式: mp3, wav, opus, aac, flac
+  "return_base64": false // 是否返回base64编码
+}
+```
+
+##### 使用统计
+```bash
+GET /api/v1/usage
+Authorization: Bearer YOUR_API_KEY
+# 响应: {"total_calls": 123, "this_month": 45, "today": 5}
+```
+
+### 3. 支持的语音
+
+#### OpenAI TTS 语音
+- `alloy` - 平衡的声音
+- `echo` - 友好的声音  
+- `fable` - 富有表现力
+- `nova` - 温暖清晰
+- `onyx` - 深沉权威
+- `shimmer` - 明亮乐观
+
+#### Gemini TTS 语音
+- `Zephyr`, `Puck`, `Charon`, `Kore`, `Fenrir`, `Leda`
+- `Orus`, `Aoede`, `Callirrhoe`, `Autonoe`, `Enceladus`
+- `Iapetus`, `Umbriel`, `Algieba`, `Despina`, `Erinome`
+- 更多语音选项请查看API控制台
+
+### 4. 错误处理
+
+API使用标准HTTP状态码：
+
+- `200` - 成功
+- `400` - 请求参数错误
+- `401` - 认证失败 (API密钥无效)
+- `403` - 访问被拒绝
+- `429` - 请求过于频繁
+- `500` - 服务器内部错误
+
+### 5. 使用示例
+
+#### cURL 示例
+```bash
+# 语音合成
+curl -X POST "http://localhost:7280/api/v1/tts/synthesize" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "text": "Hello, this is a test.",
+    "provider": "openai",
+    "voice": "alloy",
+    "format": "mp3"
+  }' \
+  --output audio.mp3
+```
+
+#### Python 示例
+```python
+import requests
+
+# API配置
+base_url = "http://localhost:7280/api/v1"
+api_key = "YOUR_API_KEY"
+headers = {
+    "Authorization": f"Bearer {api_key}",
+    "Content-Type": "application/json"
+}
+
+# 语音合成
+data = {
+    "text": "Hello, this is a test.",
+    "provider": "openai", 
+    "voice": "alloy",
+    "format": "mp3"
+}
+
+response = requests.post(f"{base_url}/tts/synthesize", 
+                        headers=headers, json=data)
+
+if response.status_code == 200:
+    with open("audio.mp3", "wb") as f:
+        f.write(response.content)
+    print("语音合成成功!")
+else:
+    print(f"错误: {response.status_code} - {response.text}")
+```
+
+#### JavaScript 示例
+```javascript
+// API配置
+const baseUrl = "http://localhost:7280/api/v1";
+const apiKey = "YOUR_API_KEY";
+
+// 语音合成
+async function synthesizeTTS(text, provider = "openai", voice = "alloy") {
+    try {
+        const response = await fetch(`${baseUrl}/tts/synthesize`, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${apiKey}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                text: text,
+                provider: provider,
+                voice: voice,
+                format: "mp3"
+            })
+        });
+
+        if (response.ok) {
+            const audioBlob = await response.blob();
+            const audioUrl = URL.createObjectURL(audioBlob);
+            
+            // 播放音频
+            const audio = new Audio(audioUrl);
+            audio.play();
+        } else {
+            console.error("合成失败:", await response.text());
+        }
+    } catch (error) {
+        console.error("请求错误:", error);
+    }
+}
+
+// 使用示例
+synthesizeTTS("Hello, world!", "openai", "alloy");
+```
+
+### 6. API测试控制台
+
+访问 `http://your-domain:7280/api.html` 使用美化的API测试控制台：
+
+- 🎨 **现代化界面**: 专业的测试控制台
+- 🔧 **在线测试**: 直接在浏览器中测试API
+- 📋 **一键复制**: 复制API端点和示例代码
+- 📊 **实时监控**: 查看服务状态和统计信息
+- 🎵 **音频播放**: 直接播放合成的音频文件
 
 ### 3. 反向代理配置 (可选)
 

@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'app-title': 'TTS UI',
             'welcome': '欢迎',
             'converter': '转换器',
+            'api-management': 'API管理',
             'settings': '设置',
             'logout': '注销',
             
@@ -51,6 +52,43 @@ document.addEventListener('DOMContentLoaded', () => {
             'app-settings': '应用设置',
             'auto-cleanup': '切换页面时自动清理音频',
             
+            // API密钥管理
+            'api-key-management': 'API密钥管理',
+            'create-api-key': '创建新API密钥',
+            'key-name': '密钥名称',
+            'key-name-placeholder': '例如: 我的项目API密钥',
+            'daily-limit': '每日调用限制',
+            'provider-permissions': '允许的服务商',
+            'existing-keys': '现有API密钥',
+            'loading-keys': '正在加载...',
+            'api-documentation': 'API文档',
+            'base-url': '基础URL',
+            'endpoint-synthesize': '文本转语音 API',
+            'request-example': '请求示例',
+            'request-params': '请求参数',
+            'param-name': '参数名',
+            'param-type': '类型',
+            'param-required': '必填',
+            'param-description': '说明',
+            'param-text-desc': '要转换的文本内容',
+            'param-provider-desc': '服务商: "openai" 或 "gemini"',
+            'param-voice-desc': '语音名称',
+            'param-format-desc': '音频格式 (默认: mp3)',
+            'param-base64-desc': '返回Base64编码 (默认: false)',
+            'other-endpoints': '其他端点',
+            'get-providers': '获取可用服务商列表',
+            'get-voices': '获取指定服务商的音色列表',
+            'get-usage': '获取API使用统计',
+            'health-check': '服务健康检查',
+            'quick-test': '快速测试',
+            'test-description': '使用以下URL在浏览器中测试API（需要先创建API密钥）:',
+            'delete-key': '删除',
+            'toggle-key': '启用/禁用',
+            'copy-key': '复制密钥',
+            'key-created': 'API密钥创建成功',
+            'key-deleted': 'API密钥删除成功',
+            'confirm-delete': '确定要删除这个API密钥吗？',
+            
             // 状态信息
             'processing': '正在处理...',
             'success': '操作成功！',
@@ -63,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'app-title': 'TTS UI',
             'welcome': 'Welcome',
             'converter': 'Converter',
+            'api-management': 'API Management',
             'settings': 'Settings',
             'logout': 'Logout',
             
@@ -106,6 +145,43 @@ document.addEventListener('DOMContentLoaded', () => {
             // 应用设置
             'app-settings': 'App Settings',
             'auto-cleanup': 'Auto cleanup audio when switching pages',
+            
+            // API密钥管理
+            'api-key-management': 'API Key Management',
+            'create-api-key': 'Create New API Key',
+            'key-name': 'Key Name',
+            'key-name-placeholder': 'e.g., My Project API Key',
+            'daily-limit': 'Daily Call Limit',
+            'provider-permissions': 'Allowed Providers',
+            'existing-keys': 'Existing API Keys',
+            'loading-keys': 'Loading...',
+            'api-documentation': 'API Documentation',
+            'base-url': 'Base URL',
+            'endpoint-synthesize': 'Text-to-Speech API',
+            'request-example': 'Request Example',
+            'request-params': 'Request Parameters',
+            'param-name': 'Parameter',
+            'param-type': 'Type',
+            'param-required': 'Required',
+            'param-description': 'Description',
+            'param-text-desc': 'Text content to convert',
+            'param-provider-desc': 'Provider: "openai" or "gemini"',
+            'param-voice-desc': 'Voice name',
+            'param-format-desc': 'Audio format (default: mp3)',
+            'param-base64-desc': 'Return Base64 encoded (default: false)',
+            'other-endpoints': 'Other Endpoints',
+            'get-providers': 'Get Available Providers',
+            'get-voices': 'Get Voice List for Provider',
+            'get-usage': 'Get API Usage Statistics',
+            'health-check': 'Service Health Check',
+            'quick-test': 'Quick Test',
+            'test-description': 'Use the following URL to test the API in browser (API key required):',
+            'delete-key': 'Delete',
+            'toggle-key': 'Enable/Disable',
+            'copy-key': 'Copy Key',
+            'key-created': 'API Key Created Successfully',
+            'key-deleted': 'API Key Deleted Successfully',
+            'confirm-delete': 'Are you sure you want to delete this API key?',
             
             // 状态信息
             'processing': 'Processing...',
@@ -194,11 +270,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const navLinks = {
         converter: document.getElementById('nav-converter'),
+        apiManagement: document.getElementById('nav-api-management'),
         settings: document.getElementById('nav-settings')
     };
 
     const pages = {
         converter: document.getElementById('converter-page'),
+        apiManagement: document.getElementById('api-management-page'),
         settings: document.getElementById('settings-page')
     };
 
@@ -220,6 +298,16 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // App settings elements
     const autoCleanupToggle = document.getElementById('auto-cleanup-toggle');
+    
+    // API Key Management elements
+    const createApiKeyBtn = document.getElementById('create-api-key-btn');
+    const apiKeysContainer = document.getElementById('api-keys-container');
+    const newKeyName = document.getElementById('new-key-name');
+    const dailyLimit = document.getElementById('daily-limit');
+    const providerOpenai = document.getElementById('provider-openai');
+    const providerGemini = document.getElementById('provider-gemini');
+    const createKeyStatus = document.getElementById('create-key-status');
+    const apiBaseUrl = document.getElementById('api-base-url');
 
     // --- State ---
     let currentUser = null;
@@ -349,6 +437,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Navigation ---
     navLinks.converter.addEventListener('click', () => { showPage('converter'); });
+    navLinks.apiManagement.addEventListener('click', () => { showPage('apiManagement'); loadApiKeys(); });
     navLinks.settings.addEventListener('click', () => { showPage('settings'); loadSettings(); });
 
     // --- Language Toggle ---
@@ -412,10 +501,197 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // 加载账户信息
             await loadAccountInfo();
+            
+            // 加载API密钥
+            await loadApiKeys();
+            
+            // 设置API基础URL
+            if (apiBaseUrl) {
+                apiBaseUrl.textContent = window.location.origin;
+            }
         } catch (error) {
             alert(getLocalizedText('error') + ': ' + error.message);
         }
     }
+
+    // --- API Key Management ---
+    async function loadApiKeys() {
+        try {
+            const keys = await apiFetch('/api/keys');
+            displayApiKeys(keys);
+        } catch (error) {
+            if (apiKeysContainer) {
+                apiKeysContainer.innerHTML = `<p class="error-message">${getLocalizedText('error')}: ${error.message}</p>`;
+            }
+        }
+    }
+
+    function displayApiKeys(keys) {
+        if (!apiKeysContainer) return;
+        
+        if (keys.length === 0) {
+            apiKeysContainer.innerHTML = `<p>${getLocalizedText('no-keys-yet') || '还没有API密钥'}</p>`;
+            return;
+        }
+
+        const keysHtml = keys.map(key => `
+            <div class="api-key-item ${key.is_active ? 'active' : 'inactive'}">
+                <div class="key-info">
+                    <div class="key-header">
+                        <h5>${key.key_name}</h5>
+                        <span class="key-status ${key.is_active ? 'active' : 'inactive'}">
+                            ${key.is_active ? '✓ 活跃' : '✗ 禁用'}
+                        </span>
+                    </div>
+                    <div class="key-details">
+                        <p><strong>API密钥:</strong> <code class="api-key-display">${key.api_key_masked}</code></p>
+                        <p><strong>每日限制:</strong> ${key.daily_limit}</p>
+                        <p><strong>允许服务商:</strong> ${key.provider_permissions.join(', ')}</p>
+                        <p><strong>创建时间:</strong> ${new Date(key.created_at).toLocaleString()}</p>
+                        ${key.last_used_at ? `<p><strong>最后使用:</strong> ${new Date(key.last_used_at).toLocaleString()}</p>` : ''}
+                    </div>
+                </div>
+                <div class="key-actions">
+                    <button class="btn-small toggle-key-btn" data-key-id="${key.id}" data-is-active="${key.is_active}">
+                        ${key.is_active ? '禁用' : '启用'}
+                    </button>
+                    <button class="btn-small delete-key-btn" data-key-id="${key.id}">
+                        ${getLocalizedText('delete-key')}
+                    </button>
+                </div>
+            </div>
+        `).join('');
+
+        apiKeysContainer.innerHTML = keysHtml;
+
+        // 添加事件监听器
+        apiKeysContainer.querySelectorAll('.toggle-key-btn').forEach(btn => {
+            btn.addEventListener('click', toggleApiKey);
+        });
+
+        apiKeysContainer.querySelectorAll('.delete-key-btn').forEach(btn => {
+            btn.addEventListener('click', deleteApiKey);
+        });
+    }
+
+    async function createApiKey() {
+        if (!newKeyName || !dailyLimit || !providerOpenai || !providerGemini) return;
+        
+        const keyName = newKeyName.value.trim();
+        const limit = parseInt(dailyLimit.value);
+        const providers = [];
+        
+        if (providerOpenai.checked) providers.push('openai');
+        if (providerGemini.checked) providers.push('gemini');
+        
+        if (!keyName) {
+            createKeyStatus.textContent = '请输入密钥名称';
+            createKeyStatus.className = 'status-message error-message';
+            return;
+        }
+        
+        if (providers.length === 0) {
+            createKeyStatus.textContent = '请至少选择一个服务商';
+            createKeyStatus.className = 'status-message error-message';
+            return;
+        }
+        
+        createKeyStatus.textContent = getLocalizedText('processing');
+        createKeyStatus.className = 'status-message';
+        
+        try {
+            const result = await apiFetch('/api/keys', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    key_name: keyName,
+                    daily_limit: limit,
+                    provider_permissions: providers
+                })
+            });
+            
+            createKeyStatus.innerHTML = `
+                <div class="success-message">
+                    <p>${getLocalizedText('key-created')}</p>
+                    <p><strong>新API密钥:</strong></p>
+                    <div class="new-key-display">
+                        <code id="new-api-key">${result.api_key}</code>
+                        <button type="button" onclick="copyToClipboard('${result.api_key}')" class="copy-btn">📋</button>
+                    </div>
+                    <p class="warning">⚠️ 请立即保存此密钥，离开页面后将无法再次查看完整密钥！</p>
+                </div>
+            `;
+            createKeyStatus.className = 'status-message success-message';
+            
+            // 清空表单
+            newKeyName.value = '';
+            dailyLimit.value = '1000';
+            providerOpenai.checked = true;
+            providerGemini.checked = true;
+            
+            // 重新加载密钥列表
+            await loadApiKeys();
+            
+        } catch (error) {
+            createKeyStatus.textContent = getLocalizedText('error') + ': ' + error.message;
+            createKeyStatus.className = 'status-message error-message';
+        }
+        
+        setTimeout(() => {
+            if (createKeyStatus.className.includes('success') || createKeyStatus.className.includes('error')) {
+                createKeyStatus.textContent = '';
+                createKeyStatus.className = 'status-message';
+            }
+        }, 10000);
+    }
+
+    async function toggleApiKey(event) {
+        const keyId = event.target.dataset.keyId;
+        const isActive = event.target.dataset.isActive === 'true';
+        
+        try {
+            await apiFetch(`/api/keys/${keyId}/toggle`, { method: 'POST' });
+            await loadApiKeys();
+        } catch (error) {
+            alert(getLocalizedText('error') + ': ' + error.message);
+        }
+    }
+
+    async function deleteApiKey(event) {
+        const keyId = event.target.dataset.keyId;
+        
+        if (!confirm(getLocalizedText('confirm-delete'))) {
+            return;
+        }
+        
+        try {
+            await apiFetch(`/api/keys/${keyId}`, { method: 'DELETE' });
+            await loadApiKeys();
+        } catch (error) {
+            alert(getLocalizedText('error') + ': ' + error.message);
+        }
+    }
+
+    // 复制到剪贴板的辅助函数
+    window.copyToClipboard = function(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            // 可以添加复制成功的提示
+            const copyBtn = event.target;
+            const originalText = copyBtn.textContent;
+            copyBtn.textContent = '✓';
+            setTimeout(() => {
+                copyBtn.textContent = originalText;
+            }, 1000);
+        }).catch(err => {
+            // 降级到选择文本的方法
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+        });
+    };
 
     async function loadAccountInfo() {
         try {
@@ -514,6 +790,11 @@ document.addEventListener('DOMContentLoaded', () => {
             accountSaveStatus.className = 'status-message';
         }, 3000);
     });
+
+    // API密钥管理事件监听器
+    if (createApiKeyBtn) {
+        createApiKeyBtn.addEventListener('click', createApiKey);
+    }
 
     const voices = {
         openai: [
@@ -797,5 +1078,49 @@ document.addEventListener('DOMContentLoaded', () => {
     // 页面卸载时清理内存
     window.addEventListener('beforeunload', () => {
         cleanupAudioMemory();
+    });
+
+    // --- 复制功能 ---
+    document.addEventListener('click', async (e) => {
+        if (e.target.closest('.copy-btn')) {
+            const btn = e.target.closest('.copy-btn');
+            const targetId = btn.getAttribute('data-copy');
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                try {
+                    let textToCopy = '';
+                    if (targetElement.tagName === 'CODE') {
+                        textToCopy = targetElement.textContent;
+                    } else {
+                        textToCopy = targetElement.textContent || targetElement.innerText;
+                    }
+                    
+                    await navigator.clipboard.writeText(textToCopy);
+                    
+                    // 显示复制成功反馈
+                    const originalIcon = btn.querySelector('i');
+                    const originalClass = originalIcon.className;
+                    originalIcon.className = 'fas fa-check';
+                    btn.style.background = '#28a745';
+                    
+                    setTimeout(() => {
+                        originalIcon.className = originalClass;
+                        btn.style.background = '';
+                    }, 1500);
+                    
+                } catch (err) {
+                    console.error('复制失败:', err);
+                    // 降级到选择文本
+                    if (window.getSelection && document.createRange) {
+                        const range = document.createRange();
+                        range.selectNodeContents(targetElement);
+                        const selection = window.getSelection();
+                        selection.removeAllRanges();
+                        selection.addRange(range);
+                    }
+                }
+            }
+        }
     });
 });

@@ -1776,3 +1776,695 @@ input:checked + .slider:before {
     transform: translateX(1.4em);
     background-color: #fff;
 }
+
+/* --- API Key Management Styles --- */
+.api-key-management {
+    margin-top: 2rem;
+}
+
+.create-api-key-section {
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.provider-checkboxes {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin: 0;
+    width: auto;
+}
+
+.api-keys-list {
+    margin-top: 2rem;
+}
+
+.api-key-item {
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    transition: all 0.3s ease;
+}
+
+.api-key-item.inactive {
+    opacity: 0.6;
+    border-color: var(--text-light);
+}
+
+.api-key-item:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.key-info {
+    flex: 1;
+}
+
+.key-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.key-header h5 {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+
+.key-status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.key-status.active {
+    background: var(--success-color);
+    color: white;
+}
+
+.key-status.inactive {
+    background: var(--text-light);
+    color: white;
+}
+
+.key-details p {
+    margin: 0.5rem 0;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.api-key-display {
+    background: var(--input-bg);
+    color: var(--primary-color);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    border: 1px solid var(--input-border);
+}
+
+.key-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-left: 1rem;
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    min-width: 80px;
+}
+
+.toggle-key-btn {
+    background: var(--info-color);
+    color: white;
+}
+
+.toggle-key-btn:hover {
+    opacity: 0.8;
+}
+
+.delete-key-btn {
+    background: var(--error-color);
+    color: white;
+}
+
+.delete-key-btn:hover {
+    opacity: 0.8;
+}
+
+.new-key-display {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+    padding: 1rem;
+    background: var(--input-bg);
+    border: 1px solid var(--success-color);
+    border-radius: 4px;
+}
+
+.new-key-display code {
+    flex: 1;
+    color: var(--success-color);
+    font-family: 'Courier New', monospace;
+    word-break: break-all;
+}
+
+.copy-btn {
+    background: var(--success-color);
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.copy-btn:hover {
+    opacity: 0.8;
+}
+
+.api-docs-section {
+    margin-top: 2rem;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.api-doc-content h5 {
+    color: var(--text-color);
+    margin: 1rem 0 0.5rem 0;
+}
+
+.code-block {
+    background: #f8f9fa;
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    overflow-x: auto;
+}
+
+body.dark-theme .code-block {
+    background: #1a1a1a;
+    border-color: var(--input-border);
+}
+
+.code-block code {
+    color: var(--text-color);
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.api-doc-content ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.api-doc-content li {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+}
+
+.api-doc-content li code {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.warning {
+    color: var(--warning-color);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background: rgba(255, 193, 7, 0.1);
+    border-radius: 4px;
+    border-left: 4px solid var(--warning-color);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .api-key-item {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .key-actions {
+        flex-direction: row;
+        margin-left: 0;
+    }
+    
+    .new-key-display {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .provider-checkboxes {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* API Management Page 专用样式 */
+.api-management-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.create-api-key-section {
+    background: var(--container-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px var(--shadow-color);
+    border: 1px solid var(--border-color);
+}
+
+.create-api-key-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.api-key-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.api-key-create-btn {
+    background: var(--button-bg);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: flex-start;
+}
+
+.api-key-create-btn:hover {
+    background: var(--button-hover-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.api-keys-list-section {
+    background: var(--container-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px var(--shadow-color);
+    border: 1px solid var(--border-color);
+}
+
+.api-keys-list-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.keys-container {
+    min-height: 100px;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    border: 1px solid var(--input-border);
+}
+
+.api-docs-section {
+    background: var(--container-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px var(--shadow-color);
+    border: 1px solid var(--border-color);
+}
+
+.api-docs-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.api-docs-section h4 {
+    color: var(--text-color);
+    margin: 1.5rem 0 1rem 0;
+    font-size: 1.2rem;
+}
+
+.code-block {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+}
+
+body.dark-theme .code-block {
+    background: #1a1a1a;
+    border-color: #333;
+    color: #00ff88;
+}
+
+.code-block pre {
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.api-endpoints-list {
+    list-style: none;
+    padding: 0;
+}
+
+.api-endpoints-list li {
+    margin: 0.8rem 0;
+    padding: 0.8rem;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    border-left: 4px solid var(--primary-color);
+}
+
+body.dark-theme .api-endpoints-list li {
+    background: rgba(0, 255, 136, 0.1);
+}
+
+.api-endpoints-list code {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+/* API Management Page 响应式 */
+@media (max-width: 768px) {
+    .api-management-container {
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+    
+    .create-api-key-section,
+    .api-keys-list-section,
+    .api-docs-section {
+        padding: 1.5rem;
+    }
+    
+    .api-key-create-btn {
+        align-self: stretch;
+        text-align: center;
+    }
+    
+    .code-block {
+        font-size: 0.8rem;
+    }
+}
+
+/* 增强的API文档样式 */
+.base-url-section {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+}
+
+body.dark-theme .base-url-section {
+    background: rgba(0, 255, 136, 0.1);
+}
+
+.endpoint-section {
+    margin-bottom: 2rem;
+}
+
+.endpoint-details {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.5rem;
+    border: 1px solid #e9ecef;
+}
+
+body.dark-theme .endpoint-details {
+    background: #1a1a1a;
+    border-color: #333;
+}
+
+.endpoint-url {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+}
+
+body.dark-theme .endpoint-url {
+    background: rgba(0, 255, 136, 0.1);
+}
+
+.method-post, .method-get {
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.method-post {
+    background: #28a745;
+    color: white;
+}
+
+.method-get {
+    background: #007bff;
+    color: white;
+}
+
+.url-path {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.code-header {
+    background: #e9ecef;
+    padding: 0.8rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    border-bottom: 1px solid #dee2e6;
+}
+
+body.dark-theme .code-header {
+    background: #2d2d2d;
+    border-color: #555;
+    color: var(--text-color);
+}
+
+.code-block {
+    overflow: hidden;
+}
+
+.copy-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.copy-btn:hover {
+    background: var(--button-hover-bg);
+    transform: translateY(-1px);
+}
+
+.request-params {
+    margin-top: 1.5rem;
+}
+
+.params-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-theme .params-table {
+    background: #2d2d2d;
+}
+
+.params-table th,
+.params-table td {
+    padding: 0.8rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e9ecef;
+}
+
+body.dark-theme .params-table th,
+body.dark-theme .params-table td {
+    border-color: #555;
+}
+
+.params-table th {
+    background: #f8f9fa;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+body.dark-theme .params-table th {
+    background: #1a1a1a;
+}
+
+.params-table code {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.85rem;
+}
+
+.required {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.optional {
+    color: #6c757d;
+}
+
+.other-endpoints-section {
+    margin-bottom: 2rem;
+}
+
+.endpoints-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.endpoint-card {
+    background: white;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-theme .endpoint-card {
+    background: #2d2d2d;
+    border-color: #555;
+}
+
+.endpoint-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.endpoint-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.endpoint-path {
+    background: #6c757d;
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-family: monospace;
+}
+
+.quick-test-section {
+    background: #e8f5e8;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #28a745;
+}
+
+body.dark-theme .quick-test-section {
+    background: rgba(40, 167, 69, 0.1);
+}
+
+.test-url-box {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: white;
+    padding: 0.8rem;
+    border-radius: 6px;
+    border: 1px solid #28a745;
+    margin-top: 1rem;
+}
+
+body.dark-theme .test-url-box {
+    background: #2d2d2d;
+    border-color: #28a745;
+}
+
+.test-url-box code {
+    flex: 1;
+    background: none;
+    color: #28a745;
+    font-weight: bold;
+}
