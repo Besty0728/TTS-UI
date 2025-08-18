@@ -29,6 +29,8 @@ docker run -d \
 
 创建 `docker-compose.yml` 文件：
 
+#### 可选，因为已经有了；可直接启动
+
 ```yaml
 services:
   tts-ui:
