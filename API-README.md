@@ -11,7 +11,7 @@ TTS-UI v2.0 提供完整的RESTful API服务，支持外部系统调用文本转
 ### API密钥获取
 
 1. **登录Web界面**
-   - 访问: `http://your-domain:7280`
+   - 访问: `http://localhost:7280`
    - 使用管理员账户登录
 
 2. **创建API密钥**
