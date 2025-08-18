@@ -1,5 +1,21 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=160&section=header&text=🌈%20你好啊，欢迎来到TTS-UI快速部署指南%20✨&fontSize=28&fontColor=fff&animation=twinkling&fontAlignY=40" />
 
+## 重要提醒
+
+⚠️ **首次部署后请立即更改默认密码！**
+
+🔧 **如需详细配置，请参考 [完整部署指南](DEPLOYMENT.md)**
+
+🐳 **推荐使用 Docker 部署，更简单可靠**
+
+## 🎉 v1.1.0 新特性
+
+✨ **新增支持**: [Gemini-balance](https://github.com/snailyp/gemini-balance) 开源项目  
+🔊 **智能音频**: 自动检测PCM格式，完美支持浏览器播放  
+🔧 **增强兼容**: 支持更多Gemini API代理端点  
+
+无需额外配置，升级后即可享受更好的音频体验！ion=header&text=🌈%20你好啊，欢迎来到TTS-UI快速部署指南%20✨&fontSize=28&fontColor=fff&animation=twinkling&fontAlignY=40" />
+
 # TTS-UI 快速部署指南
 
 ## 方式一：公共镜像部署 (最快，2分钟完成)

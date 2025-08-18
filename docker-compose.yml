@@ -1,6 +1,6 @@
 services:
   tts-ui:
-    image: tts-ui:latest
+    image: betsy0728/tts-ui:latest
     container_name: tts-ui
     ports:
       - "7280:7280"

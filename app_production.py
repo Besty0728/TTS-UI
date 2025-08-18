@@ -12,8 +12,34 @@ sys.path.insert(0, project_root)
 # 导入应用实例
 from app import app, init_db
 
+# 创建 schema.sql 文件（用于初始化数据库）
+with open("schema.sql", "w", encoding="utf-8") as f:
+    f.write(
+        """
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT UNIQUE NOT NULL,
+            password_hash TEXT NOT NULL
+        );
+        CREATE TABLE IF NOT EXISTS api_settings (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
+            service_name TEXT NOT NULL,
+            api_key TEXT,
+            api_endpoint TEXT,
+            model_name TEXT NOT NULL DEFAULT 'tts-1',
+            FOREIGN KEY (user_id) REFERENCES users (id),
+            UNIQUE (user_id, service_name)
+        );
+        """
+    )
+
 # 初始化数据库
 init_db()
+
+# 清理临时文件
+if os.path.exists("schema.sql"):
+    os.remove("schema.sql")
 
 # 设置生产环境配置
 if __name__ != "__main__":

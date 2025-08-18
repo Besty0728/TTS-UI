@@ -283,6 +283,8 @@ def text_to_speech():
                         'x-goog-api-key': settings["api_key"]
                     }
                     
+                    # 对于自定义端点，尝试多种兼容格式
+                    # 首先尝试标准格式
                     payload = {
                         "contents": [{"parts": [{"text": text}]}],
                         "generationConfig": {
@@ -298,15 +300,50 @@ def text_to_speech():
                     }
                     
                     print(f"Sending request to proxy: {api_url}")
+                    print(f"Request payload: {payload}")
+                    
                     response = requests.post(api_url, headers=headers, json=payload, timeout=30)
+                    
+                    # 如果请求失败，尝试使用端点期望的格式
+                    if response.status_code in [400, 500]:
+                        print("First request failed, trying endpoint-specific format...")
+                        
+                        # 尝试使用该端点可能期望的格式
+                        alternative_payload = {
+                            "contents": [{"parts": [{"text": text}]}],
+                            "generationConfig": {
+                                "responseModalities": ["AUDIO"],  # 使用 responseModalities 而不是 response_modalities
+                                "candidateCount": 1,
+                                "topK": 40,
+                                "topP": 0.9,
+                                "temperature": 0.7
+                            }
+                        }
+                        
+                        print(f"Alternative payload: {alternative_payload}")
+                        response = requests.post(api_url, headers=headers, json=alternative_payload, timeout=30)
+                        
+                    # 如果还是失败，尝试最简化格式
+                    if response.status_code in [400, 500]:
+                        print("Second request failed, trying minimal format...")
+                        minimal_payload = {
+                            "contents": [{"parts": [{"text": text}]}],
+                            "generationConfig": {
+                                "responseModalities": ["AUDIO"]
+                            }
+                        }
+                        print(f"Minimal payload: {minimal_payload}")
+                        response = requests.post(api_url, headers=headers, json=minimal_payload, timeout=30)
                     
                     if response.status_code == 200:
                         result = response.json()
+                        print(f"Response received: {result}")
                         
                         # 提取音频数据
                         candidate = result['candidates'][0]
                         part = candidate['content']['parts'][0]
                         
+                        # 检查是否有传统的inlineData格式
                         if 'inlineData' in part:
                             audio_data = part['inlineData']['data']
                             decoded_audio = base64.b64decode(audio_data)
@@ -343,11 +380,121 @@ def text_to_speech():
                                 mimetype = "audio/wav"
                             
                             return Response(decoded_audio, mimetype=mimetype)
+                        
+                        # 检查是否有文本内容包含图片链接（特殊端点的格式）
+                        elif 'text' in part and '![image](' in part['text']:
+                            import re
+                            # 提取图片URL
+                            url_match = re.search(r'!\[image\]\((https?://[^\)]+)\)', part['text'])
+                            if url_match:
+                                audio_url = url_match.group(1)
+                                print(f"Found audio file URL: {audio_url}")
+                                
+                                # 下载音频文件
+                                audio_response = requests.get(audio_url, timeout=30)
+                                if audio_response.status_code == 200:
+                                    audio_data = audio_response.content
+                                    print(f"Successfully downloaded audio: {len(audio_data)} bytes")
+                                    
+                                    # 临时保存文件用于调试
+                                    import tempfile
+                                    import os
+                                    temp_file = os.path.join(tempfile.gettempdir(), f"debug_audio_{hash(audio_url) % 10000}.bin")
+                                    with open(temp_file, 'wb') as f:
+                                        f.write(audio_data)
+                                    print(f"Debug: Audio saved to {temp_file}")
+                                    
+                                    # 检查文件的实际格式（通过文件头）
+                                    if audio_data.startswith(b'RIFF') and b'WAVE' in audio_data[:12]:
+                                        mimetype = "audio/wav"
+                                        print("Detected WAV format")
+                                    elif audio_data.startswith(b'\xff\xfb') or audio_data.startswith(b'\xff\xfa') or audio_data.startswith(b'ID3'):
+                                        mimetype = "audio/mpeg"
+                                        print("Detected MP3 format")
+                                    elif audio_data.startswith(b'OggS'):
+                                        mimetype = "audio/ogg"
+                                        print("Detected OGG format")
+                                    elif audio_data.startswith(b'fLaC'):
+                                        mimetype = "audio/flac"
+                                        print("Detected FLAC format")
+                                    elif audio_data.startswith(b'\x00\x00\x00\x20ftypM4A') or audio_data.startswith(b'\x00\x00\x00\x18ftypM4A'):
+                                        mimetype = "audio/mp4"
+                                        print("Detected M4A format")
+                                    else:
+                                        # 打印文件头以便调试
+                                        file_header = audio_data[:16].hex() if len(audio_data) >= 16 else audio_data.hex()
+                                        print(f"Unknown audio format, file header: {file_header}")
+                                        
+                                        # 尝试检测是否为原始PCM数据
+                                        # PCM数据通常以小的数值开始，并且具有规律性
+                                        if len(audio_data) > 1000:  # 确保有足够的数据
+                                            # 检查是否看起来像16位PCM数据
+                                            samples = []
+                                            for i in range(0, min(20, len(audio_data)-1), 2):
+                                                sample = int.from_bytes(audio_data[i:i+2], 'little', signed=True)
+                                                samples.append(sample)
+                                            
+                                            # 检查样本值是否在合理的音频范围内（-32768到32767）
+                                            valid_samples = sum(1 for s in samples if -32768 <= s <= 32767)
+                                            if valid_samples >= 8:  # 大部分样本都在合理范围内
+                                                print("Detected raw PCM audio data, adding WAV header...")
+                                                
+                                                # 为原始PCM数据创建WAV文件头部
+                                                def create_wav_header(pcm_data, sample_rate=24000, channels=1, bits_per_sample=16):
+                                                    import struct
+                                                    
+                                                    # WAV文件头部结构
+                                                    chunk_size = 36 + len(pcm_data)
+                                                    subchunk2_size = len(pcm_data)
+                                                    byte_rate = sample_rate * channels * bits_per_sample // 8
+                                                    block_align = channels * bits_per_sample // 8
+                                                    
+                                                    wav_header = struct.pack('<4sI4s4sIHHIIHH4sI',
+                                                        b'RIFF',           # ChunkID
+                                                        chunk_size,        # ChunkSize
+                                                        b'WAVE',           # Format
+                                                        b'fmt ',           # Subchunk1ID
+                                                        16,                # Subchunk1Size (PCM)
+                                                        1,                 # AudioFormat (PCM)
+                                                        channels,          # NumChannels
+                                                        sample_rate,       # SampleRate
+                                                        byte_rate,         # ByteRate
+                                                        block_align,       # BlockAlign
+                                                        bits_per_sample,   # BitsPerSample
+                                                        b'data',           # Subchunk2ID
+                                                        subchunk2_size     # Subchunk2Size
+                                                    )
+                                                    
+                                                    return wav_header + pcm_data
+                                                
+                                                # 创建完整的WAV文件
+                                                audio_data = create_wav_header(audio_data)
+                                                mimetype = "audio/wav"
+                                                print(f"Created WAV file with header, total size: {len(audio_data)} bytes")
+                                            else:
+                                                print("Data doesn't appear to be PCM audio")
+                                                mimetype = "audio/wav"  # 默认尝试
+                                        else:
+                                            # 文件太小，默认尝试WAV
+                                            mimetype = "audio/wav"
+                                        
+                                        print(f"Using final mimetype: {mimetype}")
+                                    
+                                    return Response(audio_data, mimetype=mimetype)
+                                else:
+                                    raise Exception(f"Failed to download audio from {audio_url}")
+                            else:
+                                raise Exception("No audio URL found in response text")
                         else:
                             raise Exception("No audio data found in proxy response")
                     else:
                         print(f"Proxy request failed: {response.status_code} - {response.text}")
-                        raise Exception(f"Proxy request failed with status {response.status_code}")
+                        try:
+                            error_detail = response.json()
+                            print(f"Error details: {error_detail}")
+                        except:
+                            print("Could not parse error response as JSON")
+                        raise Exception(f"Proxy request failed with status {response.status_code}: {response.text[:500]}")
                         
                 except Exception as proxy_error:
                     print(f"Proxy request failed: {proxy_error}")

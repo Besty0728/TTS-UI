@@ -9,7 +9,8 @@ TTS-UI 是一个基于 Flask 的现代化文本转语音 (TTS) Web 应用程序�
 ## ✨ 核心特性
 
 - 🎨 **现代化界面**: 响应式设计，支持深色/浅色主题自动切换
-- 🎯 **多引擎支持**:  OpenAI TTS, Gemini TTS
+- 🎯 **多引擎支持**: OpenAI TTS, Gemini TTS, 支持 [Gemini-balance](https://github.com/snailyp/gemini-balance) 开源项目
+- 🔊 **智能音频处理**: 自动检测PCM格式并添加WAV文件头，确保浏览器完美播放
 - 🔐 **用户管理**: 基于会话的身份验证系统
 - 📱 **跨平台**: 支持 Docker 容器化部署，兼容 Linux/Windows/macOS
 - 🔧 **易配置**: 图形化设置界面，支持API密钥管理
@@ -298,6 +299,12 @@ MAX_TEXT_LENGTH=5000             # 最大文本长度
 - **获取地址**: https://aistudio.google.com
 - **模型**: gemini-2.5-flash-preview-tts
 
+#### Gemini-balance 开源项目支持
+- **项目地址**: https://github.com/snailyp/gemini-balance
+- **特性**: 支持负载均衡的Gemini API代理服务
+- **配置**: 使用Gemini-balance的端点URL替换官方API端点
+- **兼容性**: 自动检测PCM音频格式，完美支持浏览器播放
+
 ### 3. 反向代理配置 (可选)
 
 #### Nginx 配置示例
@@ -518,6 +525,18 @@ pip install -r requirements.txt
 sudo systemctl restart tts-gateway
 ```
 
+### 📢 v1.1.0 重大更新
+
+**新增特性**:
+- ✨ 支持 [Gemini-balance](https://github.com/snailyp/gemini-balance) 开源项目
+- 🔊 智能PCM音频检测和WAV文件头处理
+- 🔧 增强的音频兼容性，支持更多端点格式
+
+**升级注意**:
+- 无需额外配置，兼容现有设置
+- 音频播放体验显著改善
+- 支持更多Gemini API代理服务
+
 ### 2. 数据库迁移
 
 如有数据库结构变更，请：
@@ -572,5 +591,5 @@ POST /api/settings   # 保存设置
 <div align="center">
 <h3>⭐ 如果这个项目对您有帮助，请给我们一个 Star！</h3>
 
-**当前版本**: v1.0.0 | **最后更新**: 2025年8月17日
+**当前版本**: v1.1.0 | **最后更新**: 2025年8月18日
 </div>
