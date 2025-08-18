@@ -46,9 +46,43 @@ def init_db():
         # 如果表不存在，创建表结构
         if not tables_exist:
             print("正在创建数据库表结构...")
-            # 使用 open() 函数直接读取文件，指定 UTF-8 编码
-            schema_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "schema.sql")
-            with open(schema_path, "r", encoding="utf-8") as f:
+            # 动态创建 schema.sql 文件以供 init_db() 使用
+            with open("schema.sql", "w", encoding="utf-8") as f:
+                f.write("""-- TTS Gateway 数据库架构
+
+-- 用户表
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT UNIQUE NOT NULL,
+    password_hash TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- TTS历史记录表
+CREATE TABLE IF NOT EXISTS tts_history (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    text TEXT NOT NULL,
+    provider TEXT NOT NULL,
+    voice TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users (id)
+);
+
+-- API配置表
+CREATE TABLE IF NOT EXISTS api_settings (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    service_name TEXT NOT NULL,
+    api_key TEXT,
+    api_endpoint TEXT,
+    model_name TEXT NOT NULL DEFAULT 'tts-1',
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    UNIQUE (user_id, service_name)
+);""")
+            
+            # 执行SQL脚本
+            with open("schema.sql", "r", encoding="utf-8") as f:
                 db.cursor().executescript(f.read())
             print("数据库表结构创建成功。")
         
@@ -68,6 +102,10 @@ def init_db():
             print("数据库 'tts_gateway.db' 创建成功。")
         else:
             print("数据库已存在，表结构检查完成。")
+        
+        # 清理临时的 schema 文件
+        if os.path.exists("schema.sql"):
+            os.remove("schema.sql")
 
 
 def get_db():
