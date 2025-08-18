@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=160&section=header&text=🌈%20你好啊，欢迎来到TTS-UI%20v2.0快速部署指南%20✨&fontSize=28&fontColor=fff&animation=twinkling&fontAlignY=40" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=160&section=header&text=🌈%20你好啊，欢迎来到TTS-UI快速部署指南%20✨&fontSize=28&fontColor=fff&animation=twinkling&fontAlignY=40" />
 
 ## 重要提醒
 
